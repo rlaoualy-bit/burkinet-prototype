@@ -1,198 +1,221 @@
 import Link from "next/link";
-import { ArrowRight, Download, CheckCircle, TrendingUp, Users, Building } from "lucide-react";
-import { sectors } from "@/lib/data";
+import { ArrowRight, Download, CheckCircle, Zap, Mountain, Building2, Wheat } from "lucide-react";
+
+const secteurs = [
+  {
+    id: "energie",
+    Icon: Zap,
+    label: "Énergie",
+    couleur: "bg-orange-50 border-orange-200",
+    accentText: "text-orange-700",
+    accentBg: "bg-orange-100",
+    titre: "Énergie & Électricité",
+    accroche: "300 jours d'ensoleillement par an — l'énergie solaire est le levier stratégique numéro un du Burkina Faso.",
+    chiffres: [
+      { val: "42 %", lab: "Taux d'accès à l'électricité" },
+      { val: "500 MW", lab: "Capacité cible solaire 2027" },
+      { val: "1,2 Mrd$", lab: "Besoins d'investissement estimés" },
+    ],
+    acteur: "SONABEL (Société Nationale d'Électricité du Burkina) — partenariats PPP ouverts.",
+    contact: "investissement@sonabel.bf",
+    opportunites: [
+      "Centrales solaires photovoltaïques (zones rurales & péri-urbaines)",
+      "Mini-réseaux hybrides solaire-stockage pour l'off-grid",
+      "Efficacité énergétique industrielle et bâtiments publics",
+    ],
+  },
+  {
+    id: "mines",
+    Icon: Mountain,
+    label: "Mines & Ressources",
+    couleur: "bg-yellow-50 border-yellow-200",
+    accentText: "text-yellow-700",
+    accentBg: "bg-yellow-100",
+    titre: "Mines & Ressources naturelles",
+    accroche: "4e producteur d'or en Afrique subsaharienne — un sous-sol parmi les plus riches du continent.",
+    chiffres: [
+      { val: "15", lab: "Mines industrielles actives" },
+      { val: "2,4 Mrd$", lab: "Exportations minières annuelles" },
+      { val: "18 %", lab: "Part du PIB national" },
+    ],
+    acteur: "BUMIGEB (Bureau des Mines et de la Géologie du Burkina) — guichet unique pour les permis.",
+    contact: "contact@bumigeb.bf",
+    opportunites: [
+      "Or, zinc, manganèse, phosphate — permis d'exploration disponibles",
+      "Industrie de transformation sur place (raffinage, joaillerie, métallurgie)",
+      "Fourniture de services miniers (logistique, équipements, laboratoires d'analyse)",
+    ],
+  },
+  {
+    id: "ppp",
+    Icon: Building2,
+    label: "PPP",
+    couleur: "bg-blue-50 border-blue-200",
+    accentText: "text-blue-700",
+    accentBg: "bg-blue-100",
+    titre: "Partenariats Public-Privé (PPP)",
+    accroche: "Le gouvernement ouvre les grands projets d'infrastructure aux investisseurs privés — cadre PPP renforcé depuis 2017.",
+    chiffres: [
+      { val: "8", lab: "Projets PPP actifs en 2026" },
+      { val: "450 Mrd FCFA", lab: "Enveloppe globale programmée" },
+      { val: "25 ans", lab: "Durée maximale de concession" },
+    ],
+    acteur: "Unité PPP du Ministère des Finances — cadre Loi PPP 2017.",
+    contact: "unite-ppp@finances.gov.bf",
+    opportunites: [
+      "Routes et autoroutes à péage (axe Ouagadougou–Bobo-Dioulasso)",
+      "Infrastructures hospitalières et universités en BOT (Build-Operate-Transfer)",
+      "Zones industrielles, parcs logistiques et marchés de gros",
+    ],
+  },
+  {
+    id: "agro",
+    Icon: Wheat,
+    label: "Agro-industrie",
+    couleur: "bg-green-50 border-green-200",
+    accentText: "text-green-700",
+    accentBg: "bg-green-100",
+    titre: "Agro-industrie",
+    accroche: "80 % de la population active dans l'agriculture — un potentiel de transformation agroalimentaire encore peu exploité.",
+    chiffres: [
+      { val: "32 %", lab: "Part du PIB agricole" },
+      { val: "4,2 M", lab: "Exploitations agricoles actives" },
+      { val: "65 %", lab: "Exportations non-minières" },
+    ],
+    acteur: "CCI-BF (Chambre de Commerce et d'Industrie du Burkina Faso) — guichet agro-investisseurs.",
+    contact: "agro@cci.bf",
+    opportunites: [
+      "Unités de transformation : karité, sésame, coton, anacarde",
+      "Chaînes du froid et logistique agricole post-récolte",
+      "Agriculture irriguée et hydro-agricole (périmètres de la Volta)",
+    ],
+  },
+];
 
 export default function InvestirPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-[#F7A800] via-[#e89500] to-[#c47800] text-white py-16 px-6">
+      <section className="bg-gradient-to-br from-[#F7A800] via-[#e89500] to-[#c47800] py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-black/10 rounded-full px-4 py-1.5 text-sm mb-6">
-              💼 Opportunités d&apos;investissement
+            <div className="inline-flex items-center gap-2 bg-black/10 rounded-full px-4 py-1.5 text-sm mb-6 text-[#1C1C1C] font-medium">
+              💼 Portail investisseur — Secteurs prioritaires nationaux
             </div>
             <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight text-[#1C1C1C]">
-              Le Burkina Faso,<br />
-              <span className="text-white">terre d&apos;opportunités</span>
+              Investir au Burkina Faso :<br />
+              <span className="text-white">4 secteurs prioritaires</span>
             </h1>
-            <p className="text-yellow-800 text-lg leading-relaxed mb-8">
-              Découvrez les secteurs porteurs, le cadre juridique et les mécanismes d&apos;accompagnement pour réussir votre investissement au Burkina Faso.
+            <p className="text-yellow-900 text-base leading-relaxed mb-3">
+              Ce portail s&apos;adresse aux investisseurs institutionnels, entreprises et fonds souhaitant investir dans les secteurs stratégiques burkinabè.
+            </p>
+            <p className="text-yellow-800 text-sm mb-8 bg-black/5 rounded-lg px-4 py-2.5 border border-black/10">
+              💡 Membre de la diaspora ? Pour vos démarches individuelles (création d&apos;entreprise, achat immobilier, investissement personnel), rendez-vous dans{" "}
+              <Link href="/diaspora/investir-au-pays" className="underline font-semibold hover:text-[#C8102E]">
+                Espace Diaspora → Investir au pays
+              </Link>.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="/contact" className="bg-[#C8102E] text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#9B0B22] transition-colors flex items-center gap-2">
-                Parler à un conseiller <ArrowRight size={16} />
+              <Link href="#guichet" className="bg-[#C8102E] text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#9B0B22] transition-colors flex items-center gap-2">
+                Guichet virtuel investisseur <ArrowRight size={16} />
               </Link>
               <a href="#" className="bg-black/10 text-[#1C1C1C] border border-black/20 px-6 py-3 rounded-full font-semibold text-sm hover:bg-black/20 transition-colors flex items-center gap-2">
-                <Download size={14} /> Guide de l&apos;investisseur (PDF)
+                <Download size={14} /> Guide investisseur 2026 (PDF)
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Key reasons */}
-      <section className="py-14 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-black text-gray-900 mb-8 text-center">Pourquoi investir au Burkina Faso ?</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                Icon: TrendingUp,
-                title: "Croissance économique soutenue",
-                desc: "Un PIB en croissance de +6,5% en 2025, parmi les plus dynamiques de la région UEMOA.",
-                stat: "+6,5% PIB",
-                color: "text-green-600 bg-green-50",
-              },
-              {
-                Icon: Users,
-                title: "Population jeune & qualifiée",
-                desc: "70% de la population a moins de 30 ans. Un vivier de talents formés et motivés.",
-                stat: "23,5M hab.",
-                color: "text-blue-600 bg-blue-50",
-              },
-              {
-                Icon: Building,
-                title: "Cadre légal favorable",
-                desc: "Code des investissements incitatif, exonérations fiscales, guichet unique CEFORE et protection des capitaux.",
-                stat: "Code inv. 2021",
-                color: "text-purple-600 bg-purple-50",
-              },
-            ].map(({ Icon, title, desc, stat, color }) => (
-              <div key={title} className="bg-white rounded-2xl p-7 shadow-sm hover:shadow-md transition-shadow">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${color}`}>
-                  <Icon size={22} />
-                </div>
-                <div className="text-2xl font-black text-gray-900 mb-1">{stat}</div>
-                <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
-              </div>
-            ))}
-          </div>
+      {/* KPIs */}
+      <section className="py-8 px-6 bg-gray-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto grid grid-cols-3 gap-5">
+          {[
+            { val: "+6,5 %", lab: "Croissance PIB 2025", color: "text-green-600" },
+            { val: "72 h", lab: "Création d'entreprise (CEFORE)", color: "text-blue-600" },
+            { val: "0–10 %", lab: "IS en zones économiques spéciales", color: "text-purple-600" },
+          ].map((s) => (
+            <div key={s.lab} className="bg-white rounded-2xl p-5 shadow-sm text-center">
+              <div className={`font-black text-3xl ${s.color} mb-1`}>{s.val}</div>
+              <div className="text-gray-600 text-sm">{s.lab}</div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Sectors */}
-      <section id="secteurs" className="py-14 px-6 bg-white">
+      {/* Secteurs */}
+      <section className="py-14 px-6 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-black text-gray-900 mb-2">Secteurs porteurs</h2>
-          <p className="text-gray-500 mb-8">Les domaines à fort potentiel d&apos;investissement au Burkina Faso</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {sectors.map((sector) => (
-              <div key={sector.id} className={`border rounded-2xl p-6 ${sector.color} hover:shadow-md transition-shadow cursor-pointer group`}>
-                <div className="text-3xl mb-3">{sector.icon}</div>
-                <h3 className={`font-bold text-lg mb-2 ${sector.accentColor}`}>{sector.name}</h3>
-                <p className="text-gray-700 text-sm mb-4 leading-relaxed">{sector.description}</p>
-                <div className="flex gap-3 mb-4">
-                  {sector.indicators.map((ind) => (
-                    <div key={ind.label} className="text-center">
-                      <div className={`font-black text-lg ${sector.accentColor}`}>{ind.value}</div>
-                      <div className="text-xs text-gray-500">{ind.label}</div>
+          <h2 className="text-2xl font-black text-gray-900 mb-2">Les 4 secteurs prioritaires</h2>
+          <p className="text-gray-500 mb-10">Identifiés par le gouvernement burkinabè dans le Plan National de Développement Économique et Social (PNDES) 2024–2030</p>
+
+          <div className="space-y-8">
+            {secteurs.map((s) => (
+              <div key={s.id} id={s.id} className={`border-2 rounded-2xl p-7 ${s.couleur} scroll-mt-24`}>
+                <div className="grid md:grid-cols-3 gap-8">
+                  <div className="md:col-span-2">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${s.accentBg}`}>
+                        <s.Icon size={20} className={s.accentText} />
+                      </div>
+                      <span className={`text-xs font-bold uppercase tracking-widest ${s.accentText}`}>{s.label}</span>
                     </div>
-                  ))}
+                    <h3 className="text-xl font-black text-gray-900 mb-2">{s.titre}</h3>
+                    <p className="text-gray-700 mb-5 leading-relaxed italic">&ldquo;{s.accroche}&rdquo;</p>
+
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Opportunités d&apos;investissement</p>
+                    <ul className="space-y-2 mb-5">
+                      {s.opportunites.map((o) => (
+                        <li key={o} className="flex items-start gap-2 text-sm text-gray-700">
+                          <CheckCircle size={14} className={`${s.accentText} mt-0.5 flex-shrink-0`} />
+                          {o}
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-xs text-gray-500">
+                      <span className="font-semibold">Interlocuteur :</span> {s.acteur}{" "}
+                      <a href={`mailto:${s.contact}`} className={`underline ${s.accentText}`}>{s.contact}</a>
+                    </p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Chiffres clés</p>
+                    {s.chiffres.map((c) => (
+                      <div key={c.lab} className="bg-white/80 rounded-xl p-4">
+                        <div className={`font-black text-2xl ${s.accentText}`}>{c.val}</div>
+                        <div className="text-xs text-gray-500 mt-0.5">{c.lab}</div>
+                      </div>
+                    ))}
+                    <Link
+                      href="#guichet"
+                      className={`block text-center text-sm font-semibold ${s.accentText} border border-current rounded-full px-4 py-2 hover:opacity-80 transition-opacity`}
+                    >
+                      Contacter un conseiller →
+                    </Link>
+                  </div>
                 </div>
-                <button className={`text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all ${sector.accentColor}`}>
-                  Explorer ce secteur <ArrowRight size={14} />
-                </button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Diaspora Bonds */}
-      <section id="diaspora-bonds" className="py-14 px-6 bg-[#1C1C1C] text-white">
+      {/* Cadre légal */}
+      <section className="py-12 px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 text-[#F7A800] font-semibold text-sm mb-4">
-                🏦 Instrument financier innovant
-              </div>
-              <h2 className="text-3xl font-black mb-4">Diaspora Bonds</h2>
-              <p className="text-gray-300 leading-relaxed mb-6">
-                L&apos;État burkinabè offre aux Burkinabè de l&apos;extérieur la possibilité d&apos;investir directement dans le développement national via des obligations à rendement attractif.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  "Taux d'intérêt de 6,5% par an",
-                  "Maturité de 5 ans, remboursement mensuel possible",
-                  "Investissement minimum : 100 000 FCFA (150 €)",
-                  "Souscription en ligne 100% sécurisée",
-                  "Financement de projets d'infrastructure nationaux",
-                ].map((point) => (
-                  <li key={point} className="flex items-start gap-3 text-gray-300 text-sm">
-                    <CheckCircle size={16} className="text-[#009A44] mt-0.5 flex-shrink-0" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/contact" className="bg-[#F7A800] text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-400 transition-colors inline-flex items-center gap-2">
-                Souscrire aux Diaspora Bonds <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-              <h3 className="font-bold text-white mb-6">Simulation d&apos;investissement</h3>
-              <div className="space-y-4">
-                <div>
-                  <label className="text-xs text-gray-400 mb-1 block">Montant à investir (FCFA)</label>
-                  <input
-                    type="number"
-                    defaultValue="500000"
-                    className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800]"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs text-gray-400 mb-1 block">Durée</label>
-                  <select className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800]">
-                    <option value="3">3 ans</option>
-                    <option value="5" selected>5 ans</option>
-                    <option value="7">7 ans</option>
-                  </select>
-                </div>
-                <div className="bg-[#F7A800]/10 border border-[#F7A800]/30 rounded-xl p-4 mt-4">
-                  <div className="text-gray-400 text-xs mb-1">Rendement estimé sur 5 ans</div>
-                  <div className="text-[#F7A800] font-black text-2xl">162 500 FCFA</div>
-                  <div className="text-gray-400 text-xs mt-1">Pour un investissement de 500 000 FCFA à 6,5%/an</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Legal framework */}
-      <section id="cadre" className="py-14 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-black text-gray-900 mb-2">Cadre juridique & accompagnement</h2>
-          <p className="text-gray-500 mb-8">Les ressources disponibles pour sécuriser votre investissement</p>
-          <div className="grid md:grid-cols-2 gap-6">
+          <h2 className="text-2xl font-black text-gray-900 mb-6">Cadre légal de l&apos;investissement</h2>
+          <div className="grid md:grid-cols-2 gap-5">
             {[
-              {
-                title: "Code des investissements 2021",
-                desc: "Exonérations fiscales et douanières, protection des investissements, garanties de transfert de capitaux et de rapatriement des bénéfices.",
-                action: "Télécharger le PDF",
-              },
-              {
-                title: "CEFORE — Guichet unique",
-                desc: "Création d'entreprise en ligne en 72h, accompagnement personnalisé, suivi administratif simplifié pour les investisseurs diaspora.",
-                action: "Accéder au portail",
-              },
-              {
-                title: "Agence Burkinabè des Investissements (ABI)",
-                desc: "Accompagnement des investisseurs, facilitation administrative, mise en relation avec les partenaires institutionnels.",
-                action: "Contacter l'ABI",
-              },
-              {
-                title: "Zones économiques spéciales",
-                desc: "Zones franches industrielles et agro-industrielles avec régimes fiscaux préférentiels et infrastructures dédiées.",
-                action: "Voir les zones",
-              },
-            ].map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{item.desc}</p>
+              { titre: "Code des investissements 2021", desc: "Exonérations fiscales (0 à 10 ans selon zone), protection des investissements, garantie de rapatriement des bénéfices." },
+              { titre: "Guichet unique CEFORE", desc: "Création d'entreprise en ligne en 72h. Accompagnement dédié aux investisseurs diaspora et étrangers." },
+              { titre: "Zones économiques spéciales", desc: "Régimes préférentiels à Ouagadougou, Bobo-Dioulasso et Koudougou : exonérations IS et TVA, foncier facilité." },
+              { titre: "Agence Burkinabè des Investissements (ABI)", desc: "Accompagnement de bout en bout : permis, partenariats institutionnels, mise en relation avec partenaires locaux." },
+            ].map((item) => (
+              <div key={item.titre} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="font-bold text-gray-900 mb-2">{item.titre}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-3">{item.desc}</p>
                 <button className="text-[#C8102E] font-semibold text-sm flex items-center gap-1 hover:gap-2 transition-all">
-                  {item.action} <ArrowRight size={14} />
+                  En savoir plus <ArrowRight size={14} />
                 </button>
               </div>
             ))}
@@ -200,14 +223,48 @@ export default function InvestirPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-12 px-6 bg-[#C8102E] text-white text-center">
-        <div className="max-w-xl mx-auto">
-          <h2 className="text-2xl font-black mb-3">Prêt à investir au Burkina ?</h2>
-          <p className="text-red-100 mb-6">Notre équipe vous accompagne à chaque étape de votre projet d&apos;investissement.</p>
-          <Link href="/contact" className="bg-white text-[#C8102E] px-8 py-3 rounded-full font-bold hover:bg-red-50 transition-colors inline-flex items-center gap-2">
-            Prendre rendez-vous <ArrowRight size={16} />
-          </Link>
+      {/* Guichet virtuel */}
+      <section id="guichet" className="py-14 px-6 bg-[#1C1C1C] text-white scroll-mt-24">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl font-black mb-2">Guichet virtuel investisseur</h2>
+          <p className="text-gray-400 mb-8">Notre équipe vous répond sous 48h ouvrées et vous oriente vers les bons interlocuteurs institutionnels.</p>
+          <form className="space-y-4" action="#">
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">Nom complet *</label>
+                <input type="text" required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800] placeholder:text-gray-500" placeholder="Votre nom" />
+              </div>
+              <div>
+                <label className="text-xs text-gray-400 mb-1.5 block">Email *</label>
+                <input type="email" required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800] placeholder:text-gray-500" placeholder="votre@email.com" />
+              </div>
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 mb-1.5 block">Secteur d&apos;intérêt *</label>
+              <select required className="w-full bg-gray-800 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800]">
+                <option value="">Sélectionner un secteur...</option>
+                {secteurs.map((s) => <option key={s.id} value={s.id}>{s.titre}</option>)}
+                <option value="autre">Autre secteur</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 mb-1.5 block">Volume d&apos;investissement envisagé</label>
+              <select className="w-full bg-gray-800 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800]">
+                <option value="">Non précisé</option>
+                <option>Moins de 50 M FCFA</option>
+                <option>50 M – 500 M FCFA</option>
+                <option>500 M – 5 Mrd FCFA</option>
+                <option>Plus de 5 Mrd FCFA</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 mb-1.5 block">Décrivez votre projet</label>
+              <textarea rows={4} className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#F7A800] resize-none placeholder:text-gray-500" placeholder="Présentez brièvement votre projet d'investissement..." />
+            </div>
+            <button type="submit" className="w-full bg-[#F7A800] text-black py-3.5 rounded-xl font-bold text-sm hover:bg-yellow-400 transition-colors">
+              Envoyer ma demande au guichet investisseur
+            </button>
+          </form>
         </div>
       </section>
     </div>
