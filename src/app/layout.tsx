@@ -22,6 +22,9 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${geistSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <div className="bg-amber-50 border-b border-amber-200 text-amber-800 text-xs text-center py-1.5 px-4 font-medium">
+          🚧 Prototype — contenu à valider · Version 0.2 · Non destiné à la publication
+        </div>
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
