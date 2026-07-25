@@ -14,28 +14,48 @@ export default function HomePage() {
           <div className="absolute top-10 right-10 w-96 h-96 rounded-full bg-[#009A44] blur-3xl" />
           <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#F7A800] blur-3xl" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#009A44] animate-pulse" />
-              Plateforme de référence du Burkina Faso
-            </div>
-            <h1 className="text-5xl md:text-6xl font-black leading-tight mb-6">
-              Inspirer.<br />
-              <span className="text-[#F7A800]">Réussir.</span><br />
-              Rayonner.
-            </h1>
-            <p className="text-lg text-gray-200 mb-8 leading-relaxed max-w-xl">
-              Le hub numérique de la communauté burkinabè mondiale — actualités, opportunités d&apos;investissement, données économiques et connexion diaspora.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/investir" className="bg-[#F7A800] text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-400 transition-colors flex items-center gap-2">
-                Investir au Burkina <ArrowRight size={16} />
-              </Link>
-              <Link href="/diaspora" className="bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/20 transition-colors">
-                Espace Diaspora
-              </Link>
-            </div>
+        <div className="relative max-w-7xl mx-auto px-6 py-16 md:py-24">
+          {/* Signature */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-sm mb-6">
+            <span className="w-2 h-2 rounded-full bg-[#009A44] animate-pulse" />
+            Inspirer. Réussir. Rayonner au Burkina Faso.
+          </div>
+
+          <h1 className="text-5xl md:text-6xl font-black leading-tight mb-4">
+            Le hub numérique<br />
+            <span className="text-[#F7A800]">du Burkina Faso</span>
+          </h1>
+          <p className="text-gray-200 mb-10 leading-relaxed max-w-xl text-lg">
+            Actualités, opportunités d&apos;investissement, espace diaspora et données économiques — en un seul portail.
+          </p>
+
+          {/* Double porte d'entrée */}
+          <div className="grid md:grid-cols-2 gap-4 max-w-2xl">
+            {/* Investisseur */}
+            <Link
+              href="/investir"
+              className="group bg-[#F7A800] text-black rounded-2xl p-6 hover:bg-yellow-400 transition-colors"
+            >
+              <div className="text-2xl mb-3">💼</div>
+              <div className="font-black text-lg mb-1 group-hover:translate-x-1 transition-transform">Je suis investisseur</div>
+              <div className="text-sm text-yellow-900 mb-4">Découvrir les 4 secteurs prioritaires, le cadre légal et le guichet investisseur</div>
+              <div className="inline-flex items-center gap-2 text-sm font-bold">
+                Portail investisseur <ArrowRight size={14} />
+              </div>
+            </Link>
+
+            {/* Diaspora */}
+            <Link
+              href="/diaspora"
+              className="group bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-2xl p-6 hover:bg-white/20 transition-colors"
+            >
+              <div className="text-2xl mb-3">🌍</div>
+              <div className="font-black text-lg mb-1 group-hover:translate-x-1 transition-transform">Je suis de la diaspora</div>
+              <div className="text-sm text-gray-300 mb-4">Communauté, démarches pour investir au pays, annuaire des experts et agenda</div>
+              <div className="inline-flex items-center gap-2 text-sm font-bold text-[#F7A800]">
+                Espace Diaspora <ArrowRight size={14} />
+              </div>
+            </Link>
           </div>
         </div>
 
