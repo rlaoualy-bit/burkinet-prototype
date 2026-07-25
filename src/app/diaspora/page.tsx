@@ -24,13 +24,31 @@ export default function DiasporaPage() {
               <Link href="/annuaire" className="bg-[#F7A800] text-black px-6 py-3 rounded-full font-bold text-sm hover:bg-yellow-400 transition-colors flex items-center gap-2">
                 Annuaire des experts <ArrowRight size={16} />
               </Link>
-              <Link href="/investir" className="bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors">
-                Investir au pays
+              <Link href="/diaspora/investir-au-pays" className="bg-white/20 backdrop-blur-sm text-white border border-white/30 px-6 py-3 rounded-full font-semibold text-sm hover:bg-white/30 transition-colors flex items-center gap-2">
+                Investir au pays <ArrowRight size={16} />
               </Link>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Sous-menu diaspora */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-1 overflow-x-auto py-2">
+            {[
+              { href: "/diaspora", label: "Communauté" },
+              { href: "/diaspora/investir-au-pays", label: "Investir au pays" },
+              { href: "/annuaire", label: "Annuaire des experts" },
+              { href: "/diaspora#agenda", label: "Agenda" },
+            ].map((l) => (
+              <Link key={l.href} href={l.href} className="whitespace-nowrap px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-[#009A44] hover:bg-green-50 rounded-lg transition-colors">
+                {l.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* Stats */}
       <div className="bg-gray-900 text-white">
