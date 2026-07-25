@@ -5,12 +5,14 @@ import { useState } from "react";
 import { Search, Menu, X, Globe, ChevronDown } from "lucide-react";
 
 const navLinks = [
-  { href: "/actualites", label: "Actualités" },
-  { href: "/diaspora", label: "Diaspora" },
   { href: "/investir", label: "Investir" },
-  { href: "/data", label: "BurkiNet Data" },
-  { href: "/annuaire", label: "Annuaire" },
-  { href: "/a-propos", label: "À propos" },
+  { href: "/diaspora", label: "Espace Diaspora" },
+  { href: "/actualites", label: "Actualités" },
+  { href: "/revenir-au-pays", label: "Revenir au pays" },
+  { href: "/contribuer", label: "Contribuer" },
+  { href: "/data", label: "Burkinet Data" },
+  { href: "/cadre-legal", label: "Cadre légal & Services" },
+  { href: "/a-propos", label: "À propos & Contact" },
 ];
 
 const languages = ["FR", "EN", "ES", "中文"];
@@ -27,10 +29,10 @@ export default function Header() {
       {/* Top bar */}
       <div className="bg-[#C8102E] text-white text-xs py-1 px-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <span className="hidden sm:block">🇧🇫 Inspirer. Réussir. Rayonner. — La plateforme de référence de la communauté burkinabè</span>
+          <span className="hidden sm:block">🇧🇫 Inspirer. Réussir. Rayonner au Burkina Faso. — Plateforme investisseurs & diaspora burkinabè</span>
           <span className="sm:hidden">🇧🇫 BurkiNet.org</span>
           <div className="flex items-center gap-4">
-            <Link href="/contact" className="hover:underline">Contact</Link>
+            <Link href="/a-propos" className="hover:underline">Contact</Link>
             <Link href="/actualites" className="hover:underline">Newsletter</Link>
           </div>
         </div>
@@ -50,13 +52,13 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* Desktop nav — 8 rubriques */}
+        <nav className="hidden xl:flex items-center gap-0.5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#C8102E] hover:bg-red-50 rounded-md transition-colors"
+              className="px-2.5 py-2 text-xs font-medium text-gray-700 hover:text-[#C8102E] hover:bg-red-50 rounded-md transition-colors whitespace-nowrap"
             >
               {link.label}
             </Link>
@@ -74,7 +76,7 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Que recherchez-vous ?"
-                className="border border-gray-300 rounded-full px-4 py-1.5 text-sm w-48 sm:w-64 focus:outline-none focus:border-[#C8102E]"
+                className="border border-gray-300 rounded-full px-4 py-1.5 text-sm w-48 sm:w-56 focus:outline-none focus:border-[#C8102E]"
               />
               <button onClick={() => setSearchOpen(false)} className="text-gray-500 hover:text-gray-700">
                 <X size={18} />
@@ -118,7 +120,7 @@ export default function Header() {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden p-2 text-gray-600 hover:text-[#C8102E]"
+            className="xl:hidden p-2 text-gray-600 hover:text-[#C8102E]"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -127,25 +129,18 @@ export default function Header() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className="xl:hidden bg-white border-t border-gray-100 shadow-lg">
           <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block px-4 py-3 text-gray-700 hover:text-[#C8102E] hover:bg-red-50 rounded-lg font-medium"
+                className="block px-4 py-3 text-gray-700 hover:text-[#C8102E] hover:bg-red-50 rounded-lg font-medium text-sm"
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 block text-center bg-[#C8102E] text-white px-4 py-3 rounded-lg font-medium hover:bg-[#9B0B22] transition-colors"
-            >
-              Nous contacter
-            </Link>
           </nav>
         </div>
       )}
